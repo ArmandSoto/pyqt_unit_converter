@@ -1,6 +1,7 @@
 import sys
 
 from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QComboBox, QPushButton, QHBoxLayout, QLineEdit, QLabel
+from PyQt6.QtCore import Qt
 from conversions import convert
 
 class Unit_Converter(QWidget):
@@ -27,7 +28,6 @@ class Unit_Converter(QWidget):
         unit_types = ('Fahrenheit', 'Celsius', 'Kelvin')
         
         # drop-down menus
-        
         self.from_unit_selector.addItems(unit_types)
         self.from_unit_selector.setMinimumWidth(100)
 
@@ -45,8 +45,7 @@ class Unit_Converter(QWidget):
         self.output_field.setFixedHeight(40)
         self.output_field.setFixedWidth(150)
 
-        # Layouts
-        
+           
         # from/to dropdown layouts
         from_layout = QVBoxLayout()
         from_layout.addWidget(self.from_unit_selector)
@@ -54,22 +53,42 @@ class Unit_Converter(QWidget):
         to_layout = QVBoxLayout()
         to_layout.addWidget(self.to_unit_selector)
 
-        # first line -- input
-        h_layout = QHBoxLayout()
-        h_layout.addWidget(self.input_field)
-        h_layout.addLayout(from_layout)
-        h_layout.addLayout(to_layout)
-        h_layout.addWidget(self.convert_button)
+    
+        # Arrow Label
+        self.arrow_label = QLabel("→")
+        self.arrow_label.setFixedWidth(20)
+        self.arrow_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+
+        # Horizontal Input layout
+        input_h_layout = QHBoxLayout()
+        input_h_layout.addWidget(self.input_field)
+        input_h_layout.addLayout(from_layout)
+        input_h_layout.addWidget(self.arrow_label)
+        input_h_layout.addLayout(to_layout)
+        input_h_layout.addWidget(self.convert_button)
+
+        # Horizontal Output layout
+        output_h_layout = QHBoxLayout()
+        self.converted_unit_text = QLabel("")
+        output_h_layout.addWidget(self.output_field) 
+        output_h_layout.addWidget(self.converted_unit_text)
+
         
-        # second line --output
+        # App Vertical Layout
         v_layout = QVBoxLayout()
-        v_layout.addLayout(h_layout)
-        v_layout.addWidget(self.output_field)
+        v_layout.addLayout(input_h_layout)
+        v_layout.addLayout(output_h_layout)
 
         self.setLayout(v_layout)
 
         # connect input to button
         self.convert_button.clicked.connect(self.convert_unit)
+
+        ## sample fix
+        
+
+        v_layout.addStretch()
 
     #dummy function that just connects convert to button
     def convert_unit(self):
@@ -80,6 +99,7 @@ class Unit_Converter(QWidget):
             
             result = convert(from_unit, to_unit, input_value)
             self.output_field.setText(str(round(result, 2)))
+            self.converted_unit_text.setText(u"\N{DEGREE SIGN} " + self.to_unit_selector.currentText())
         except ValueError:
             self.output_field.setText("Invalid input")
 
