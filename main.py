@@ -25,7 +25,7 @@ class Unit_Converter(QWidget):
         self.from_unit_selector = QComboBox()
         self.to_unit_selector = QComboBox()
 
-        unit_types = ('Fahrenheit', 'Celsius', 'Kelvin')
+        unit_types = ('Fahrenheit', 'Celsius', 'Kelvin', 'Inches', 'Feet', 'Miles', 'Meters', 'Kilometers')
         
         # drop-down menus
         self.from_unit_selector.addItems(unit_types)
@@ -85,12 +85,9 @@ class Unit_Converter(QWidget):
         # connect input to button
         self.convert_button.clicked.connect(self.convert_unit)
 
-        ## sample fix
-        
-
+        #pushes content to the top
         v_layout.addStretch()
 
-    #dummy function that just connects convert to button
     def convert_unit(self):
         try:
             input_value = float(self.input_field.text())
@@ -98,8 +95,16 @@ class Unit_Converter(QWidget):
             to_unit = self.to_unit_selector.currentText()
             
             result = convert(from_unit, to_unit, input_value)
+            
+            if isinstance(result, str):
+                self.output_field.setText(result)
+                self.converted_unit_text.setText("")
+                return # exit early if invalid conversion
+
             self.output_field.setText(str(round(result, 2)))
-            self.converted_unit_text.setText(u"\N{DEGREE SIGN} " + self.to_unit_selector.currentText())
+            unit = self.to_unit_selector.currentText()
+            # only use degrees sign if to_unit is a temperature
+            self.converted_unit_text.setText(f"° {unit}" if unit in ("Fahrenheit", "Celsius", "Kelvin") else unit)
         except ValueError:
             self.output_field.setText("Invalid input")
 
