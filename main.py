@@ -1,6 +1,7 @@
 import sys
 
 from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QComboBox, QPushButton, QHBoxLayout, QLineEdit, QLabel
+from conversions import convert
 
 class Unit_Converter(QWidget):
     #define the unit_converter constructor
@@ -26,11 +27,11 @@ class Unit_Converter(QWidget):
         unit_types = ('Fahrenheit', 'Celsius', 'Kelvin')
         
         # drop-down menus
-        self.from_unit_label = QLabel("From:")
+        
         self.from_unit_selector.addItems(unit_types)
         self.from_unit_selector.setMinimumWidth(100)
 
-        self.to_unit_label = QLabel("To:")
+        
         self.to_unit_selector.addItems(unit_types)
         self.to_unit_selector.setMinimumWidth(100)
 
@@ -46,22 +47,21 @@ class Unit_Converter(QWidget):
 
         # Layouts
         
-        # from/to label and dropdown layouts
+        # from/to dropdown layouts
         from_layout = QVBoxLayout()
-        from_layout.addWidget(self.from_unit_label)
         from_layout.addWidget(self.from_unit_selector)
 
         to_layout = QVBoxLayout()
-        to_layout.addWidget(self.to_unit_label)
         to_layout.addWidget(self.to_unit_selector)
 
+        # first line -- input
         h_layout = QHBoxLayout()
         h_layout.addWidget(self.input_field)
         h_layout.addLayout(from_layout)
         h_layout.addLayout(to_layout)
         h_layout.addWidget(self.convert_button)
         
-
+        # second line --output
         v_layout = QVBoxLayout()
         v_layout.addLayout(h_layout)
         v_layout.addWidget(self.output_field)
@@ -71,10 +71,17 @@ class Unit_Converter(QWidget):
         # connect input to button
         self.convert_button.clicked.connect(self.convert_unit)
 
+    #dummy function that just connects convert to button
     def convert_unit(self):
-        input_value = self.input_field.text()
-
-        self.output_field.setText(input_value)
+        try:
+            input_value = float(self.input_field.text())
+            from_unit = self.from_unit_selector.currentText()
+            to_unit = self.to_unit_selector.currentText()
+            
+            result = convert(from_unit, to_unit, input_value)
+            self.output_field.setText(str(round(result, 2)))
+        except ValueError:
+            self.output_field.setText("Invalid input")
 
 
 def main():
