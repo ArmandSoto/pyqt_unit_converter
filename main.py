@@ -25,7 +25,7 @@ class Unit_Converter(QWidget):
         self.from_unit_selector = QComboBox()
         self.to_unit_selector = QComboBox()
 
-        unit_types = ('Fahrenheit', 'Celsius', 'Kelvin', 'Inches', 'Feet', 'Miles', 'Meters', 'Kilometers')
+        unit_types = ('Fahrenheit', 'Celsius', 'Kelvin', 'Inches', 'Feet', 'Miles', 'Meters', 'Kilometers', 'Pounds', 'Kilograms', 'Ounces', 'Grams', 'Tons')
         
         # drop-down menus
         self.from_unit_selector.addItems(unit_types)
@@ -106,7 +106,7 @@ class Unit_Converter(QWidget):
             # only use degrees sign if to_unit is a temperature
             self.converted_unit_text.setText(f"° {unit}" if unit in ("Fahrenheit", "Celsius", "Kelvin") else unit)
         except ValueError:
-            self.output_field.setText("Invalid input")
+            self.output_field.setText("Invalid Input")
 
 
 def main():

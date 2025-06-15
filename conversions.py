@@ -33,7 +33,31 @@ def kilometers_to_feet(k): return k * 3280.84
 def kilometers_to_miles(k): return k * 1.60934
 def kilometers_to_meters(k): return k * 1000
 
+# Weight
+def pounds_to_kilograms(p): p * 0.453592
+def pounds_to_ounces(p): p * 16
+def pounds_to_grams(p): p * 453.592
+def pounds_to_tons(p): p / 2000
 
+def kilograms_to_pounds(k): k / 0.453592
+def kilograms_to_ounces(k): k * 35.274
+def kilograms_to_grams(k): k * 1000
+def kilograms_to_tons(k): k / 907.18474
+
+def ounces_to_pounds(oz): oz / 16
+def ounces_to_kilograms(oz): oz * 0.0283495
+def ounces_to_grams(oz): oz * 28.3495
+def ounces_to_tons(oz): oz / 32000
+
+def grams_to_pounds(g): g / 453.592
+def grams_to_kilograms(g): g / 1000
+def grams_to_ounces(g): g / 28.3495
+def grams_to_tons(g): g / 907184.74
+
+def tons_to_pounds(t): t * 2000
+def tons_to_kilograms(t): t * 907.18474
+def tons_to_ounces(t): t * 32000
+def tons_to_grams(t): t * 907184.74
 
 conversions = {
     ("Fahrenheit", "Celsius"): fahrenheit_to_celsius,
@@ -62,10 +86,31 @@ conversions = {
     ("Kilometers", "Feet"): kilometers_to_feet,
     ("Kilometers", "Miles"): kilometers_to_miles,
     ("Kilometers", "Inches"): kilometers_to_meters,
+    ("Pounds", "Kilograms"): pounds_to_kilograms,
+    ("Pounds", "Ounces"): pounds_to_ounces,
+    ("Pounds", "Grams"): pounds_to_grams,
+    ("Pounds", "Tons"): pounds_to_tons,
+    ("Kilograms", "Pounds"): kilograms_to_pounds,
+    ("Kilograms", "Ouces"): kilograms_to_ounces,
+    ("Kilograms", "Grams"): kilograms_to_grams,
+    ("Kilograms", "Tons"): kilograms_to_tons,
+    ("Ounces", "Pounds"): ounces_to_pounds,
+    ("Ounces", "Kilograms"): ounces_to_kilograms,
+    ("Ounces", "Grams"): ounces_to_grams,
+    ("Ounces", "Tons"): ounces_to_tons,
+    ("Grams", "Pounds"): grams_to_pounds,
+    ("Grams", "Kilograms"): grams_to_kilograms,
+    ("Grams", "Ounces"): grams_to_ounces,
+    ("Grams", "Tons"): grams_to_tons,
+    ("Tons", "Pounds"): tons_to_pounds,
+    ("Tons", "Kilograms"): tons_to_kilograms,
+    ("Tons", "Ounces"): tons_to_ounces,
+    ("Tons", "Grams"): tons_to_grams,
+
 }
 
 def convert(from_unit, to_unit, value):
     try:
         return conversions[(from_unit, to_unit)](value)
     except KeyError:
-        return "Invalid Entry"
+        return "Invalid Conversion"
