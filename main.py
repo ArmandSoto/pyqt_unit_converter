@@ -37,6 +37,22 @@ class Unit_Converter(QWidget):
 
         # Convert button
         self.convert_button = QPushButton("Convert")
+        self.convert_button.setMaximumHeight(60)
+        self.convert_button.setMaximumWidth(100)
+        self.convert_button.setStyleSheet(
+            """
+                QPushButton {
+                    background-color: #3498db;
+                    color: white;
+                    border: none;
+                    border-radius: 20px;     
+                    padding: 5px 15px;      
+                }
+                QPushButton:hover {
+                    background-color: #2980b9;
+                }
+            """)
+        
 
         # Converted unit
         self.output_field = QLineEdit()
@@ -45,13 +61,6 @@ class Unit_Converter(QWidget):
         self.output_field.setFixedHeight(40)
         self.output_field.setFixedWidth(150)
 
-           
-        # from/to dropdown layouts
-        from_layout = QVBoxLayout()
-        from_layout.addWidget(self.from_unit_selector)
-
-        to_layout = QVBoxLayout()
-        to_layout.addWidget(self.to_unit_selector)
 
     
         # Arrow Label
@@ -63,15 +72,15 @@ class Unit_Converter(QWidget):
         # Horizontal Input layout
         input_h_layout = QHBoxLayout()
         input_h_layout.addWidget(self.input_field)
-        input_h_layout.addLayout(from_layout)
+        input_h_layout.addWidget(self.from_unit_selector)
         input_h_layout.addWidget(self.arrow_label)
-        input_h_layout.addLayout(to_layout)
+        input_h_layout.addWidget(self.to_unit_selector)
         input_h_layout.addWidget(self.convert_button)
 
         # Horizontal Output layout
         output_h_layout = QHBoxLayout()
         self.converted_unit_text = QLabel("")
-        output_h_layout.addWidget(self.output_field) 
+        output_h_layout.addWidget(self.output_field)
         output_h_layout.addWidget(self.converted_unit_text)
 
         

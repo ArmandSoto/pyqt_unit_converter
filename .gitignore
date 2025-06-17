@@ -1,0 +1,39 @@
+# Created by venv; see https://docs.python.org/3/library/venv.html
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PyQt uic and rcc generated files
+*.pyc
+*.pyo
+*.pyd
+
+# Backup files
+*.bak
+*.swp
+*.swo
+
+# VSCode project files
+.vscode/
+
+# Mac OS files
+.DS_Store
+
+# Test cache (if using pytest)
+.pytest_cache/
+.cache/
+
+# Virtual environment
+env/
+venv/
+.venv/
+
+# Installer/build artifacts
+build/
+dist/
+*.egg-info/
+
+# Log files
+*.log

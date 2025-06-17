@@ -15,7 +15,7 @@ def inches_to_kilometers(i): return i * 0.0000254
 
 def feet_to_inches(f): return f * 12
 def feet_to_miles(f): return f / 5280
-def feet_to_meters(f): f * 0.3048
+def feet_to_meters(f): return f * 0.3048
 def feet_to_kilometers(f): f * 0.0003048
 
 def miles_to_inches(m): return m * 633360
@@ -34,30 +34,30 @@ def kilometers_to_miles(k): return k * 1.60934
 def kilometers_to_meters(k): return k * 1000
 
 # Weight
-def pounds_to_kilograms(p): p * 0.453592
-def pounds_to_ounces(p): p * 16
-def pounds_to_grams(p): p * 453.592
-def pounds_to_tons(p): p / 2000
+def pounds_to_kilograms(p): return p * 0.453592
+def pounds_to_ounces(p): return p * 16
+def pounds_to_grams(p): return p * 453.592
+def pounds_to_tons(p): return p / 2000
 
-def kilograms_to_pounds(k): k / 0.453592
-def kilograms_to_ounces(k): k * 35.274
-def kilograms_to_grams(k): k * 1000
-def kilograms_to_tons(k): k / 907.18474
+def kilograms_to_pounds(k): return k / 0.453592
+def kilograms_to_ounces(k): return k * 35.274
+def kilograms_to_grams(k): return k * 1000
+def kilograms_to_tons(k): return k / 907.18474
 
-def ounces_to_pounds(oz): oz / 16
-def ounces_to_kilograms(oz): oz * 0.0283495
-def ounces_to_grams(oz): oz * 28.3495
-def ounces_to_tons(oz): oz / 32000
+def ounces_to_pounds(oz): return oz / 16
+def ounces_to_kilograms(oz): return oz * 0.0283495
+def ounces_to_grams(oz): return oz * 28.3495
+def ounces_to_tons(oz): return oz / 32000
 
-def grams_to_pounds(g): g / 453.592
-def grams_to_kilograms(g): g / 1000
-def grams_to_ounces(g): g / 28.3495
-def grams_to_tons(g): g / 907184.74
+def grams_to_pounds(g): return g / 453.592
+def grams_to_kilograms(g): return g / 1000
+def grams_to_ounces(g): return g / 28.3495
+def grams_to_tons(g): return g / 907184.74
 
-def tons_to_pounds(t): t * 2000
-def tons_to_kilograms(t): t * 907.18474
-def tons_to_ounces(t): t * 32000
-def tons_to_grams(t): t * 907184.74
+def tons_to_pounds(t): return t * 2000
+def tons_to_kilograms(t): return t * 907.18474
+def tons_to_ounces(t): return t * 32000
+def tons_to_grams(t): return t * 907184.74
 
 conversions = {
     ("Fahrenheit", "Celsius"): fahrenheit_to_celsius,
@@ -110,6 +110,8 @@ conversions = {
 }
 
 def convert(from_unit, to_unit, value):
+    if (from_unit == to_unit):
+        return value
     try:
         return conversions[(from_unit, to_unit)](value)
     except KeyError:
