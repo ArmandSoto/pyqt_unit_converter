@@ -14,10 +14,10 @@ A desktop application built with PyQt that converts between various units of mea
 
 ---
 
-## 🖥️ Demo
+## <img src="assets/icon.png" alt="App Icon" style="width:20px"/> Demo
 
 ![Demo](assets/demo.gif)
-<img src="assets/icon.png" alt="App Icon" width="100"/>
+
 ---
 
 ## 📦 Installation
