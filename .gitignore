@@ -37,3 +37,14 @@ dist/
 
 # Log files
 *.log
+
+# PyInstaller spec file
+*.spec
+
+# Icon resources
+*.icns
+*.ico
+
+# Disk images and archives
+*.dmg
+*.zip
