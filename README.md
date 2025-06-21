@@ -17,6 +17,7 @@ A desktop application built with PyQt that converts between various units of mea
 ## 🖥️ Demo
 
 ![Demo](assets/demo.gif)
+![App Icon](assets/icon.png)
 ---
 
 ## 📦 Installation
